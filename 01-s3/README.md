@@ -1,4 +1,4 @@
-# static-s3
+# S3
 
 This example shows how to host a simple static web site at AWS using S3.
 

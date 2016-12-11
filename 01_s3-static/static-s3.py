@@ -23,9 +23,6 @@ import requests
 import sys
 import uuid
 
-# What's the DNS subdomain where our bucket will be hosted?
-BUCKET_DOMAIN = 's3-website-us-east-1.amazonaws.com'
-
 # Get a handle to manage our new S3 bucket.
 s3 = boto3.resource('s3')
 

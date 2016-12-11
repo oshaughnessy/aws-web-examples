@@ -4,7 +4,7 @@ Ways to host web sites at AWS
 
 ## Requirements
 
-The examples here will require you to have an [AWS](https://aws.amazon.com/]
+The examples here will require you to have an [AWS](https://aws.amazon.com/)
 account. Most require the [Python BOTO](https://aws.amazon.com/sdk-for-python/)
 library.
 

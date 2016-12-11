@@ -11,3 +11,14 @@ What does it do?
 * It creates a new Beanstalk application and deploys it.
 * It verifies that the site is functioning correctly, as reported by
   Elastic Beanstalk.
+
+Assumptions:
+
+* This was written on macOS 10.12, but it should work on any UNIX-like
+  system that has the "uuidgen" command.
+* It runs under ksh, and uses some conveniences that are unique to that
+  shell.
+* It uses the [AWS CLI](https://aws.amazon.com/documentation/cli/). On a
+  Mac, that's easy to install using [Homebrew](http://brew.sh).
+* You have API access to your AWS account, and you've configured the
+  AWS CLI tools to use it.

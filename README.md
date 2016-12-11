@@ -10,10 +10,10 @@ You'll also need [AWS API](https://aws.amazon.com/blogs/security/a-new-and-stand
 
 ## Examples
 
-### [s3-static](./01_s3-static)
+### [s3-static](./01-s3)
 
 Shows simple steps in Python for hosting a static web site at S3.
 
-## [eb-dynamic](./02_eb-dynamic)
+## [eb-dynamic](./02-elastic_beanstalk)
 
 Shows steps for deploying a web site to Elastic Beanstalk.

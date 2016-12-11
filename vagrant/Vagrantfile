@@ -19,6 +19,6 @@ Vagrant.configure("2") do |config|
     echo " "
     echo "----"
     echo " "
-   echo "You can also test at http://localhost:8080 from your host system."
+    echo "You can also test at http://localhost:8080 from your host system."
   SHELL
 end

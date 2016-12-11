@@ -1,0 +1,82 @@
+#!/bin/ksh
+
+##
+# eb-deploy: Deploy a simple web site to AWS Elastic Beanstalk
+# 
+# This script first uploads the app contents and environment config
+# from "public" to a new S3 bucket.
+# 
+# Then it creates a new Elastic Beanstalk application, deploys it,
+# and waits for it to finish booting before reporting the status.
+# 
+# Assumptions:
+#
+# "uuidgen" is in your path to generate a random name for the application
+# and S3 bucket.
+#
+# You have the AWS CLI installed and configured with your API keys
+##
+
+# Specify the region where we want to create our bucket and Beanstalk
+# http://docs.aws.amazon.com/general/latest/gr/rande.html
+AWS_DEFAULT_REGION=us-west-2
+
+# We're only hosting a static HTML file. We want a solution stack that will
+# easily interpret a normal index.html file.
+# http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html
+EB_SOLUTION_STACK_NAME="64bit Amazon Linux 2016.09 v2.2.0 running PHP 7.0"
+
+# Pull an application name from arg 1, or generate a random one
+app_name=${1:-$(uuidgen |tr '[[:upper:]]' '[[:lower:]]')}
+
+
+#
+# Create an S3 bucket and sync our public subdir to it
+#
+
+aws s3api head-bucket --bucket "$app_name" >/dev/null 2>&1
+bucket_exists=$?
+
+# safety net: exit on errors
+set -o errexit
+
+if (( $bucket_exists != 0 )); then
+    print "Creating bucket \"$app_name\""
+    bucket_url=$(aws s3api create-bucket --bucket "$app_name" --acl public-read --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION |jq -r .Location)
+else
+    print "Bucket \"$app_name\" already exists."
+fi
+
+print "Uploading application source and config to S3 bucket"
+tmpzip=$(mktemp)
+(cd ./public && zip -qr $tmpzip.zip .)
+aws s3 cp $tmpzip.zip "s3://$app_name/public.zip" --quiet
+
+
+#
+# Deploy an Elastic Beanstalk application, one step at a time
+#
+
+aws elasticbeanstalk check-dns-availability --cname-prefix "$app_name" >elasticbeanstalk.log
+eb_url=$(jq -r .FullyQualifiedCNAME <elasticbeanstalk.log)
+aws elasticbeanstalk create-application-version --application-name "$app_name" --version-label v1 --source-bundle "S3Bucket=$app_name,S3Key=public.zip" --auto-create-application >>elasticbeanstalk.log
+aws elasticbeanstalk create-environment --cname-prefix "$app_name" --application-name "$app_name" --version-label v1 --environment-name "$app_name" --solution-stack-name "$EB_SOLUTION_STACK_NAME" >>elasticbeanstalk.log
+
+# Get the current launch status, then keep fetching it as long as the env
+# is still launching
+eb_status=$(aws elasticbeanstalk describe-environments --environment-names "$app_name" |jq -r '.Environments[0].Status')
+
+while [[ "$eb_status" == "Launching" ]]; do
+    print "Waiting for Elastic Beanstalk environment to boot up (give it a few minutes)"
+    sleep 60
+    eb_status=$(aws elasticbeanstalk describe-environments --environment-names "$app_name" |jq -r '.Environments[0].Status')
+done
+
+# Finally, get the health status and report the status
+eb_health=$(aws elasticbeanstalk describe-environments --environment-names "$app_name" |jq -r '.Environments[0].Health')
+if [[ "$eb_health" == "Green" ]]; then
+    print "Site health is green: it's working!"
+    print "Test at http://$eb_url"
+else
+    print "Error initializing Elastic Beanstalk. See elasticbeanstalk.log."
+fi

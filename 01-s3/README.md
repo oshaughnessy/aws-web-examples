@@ -1,7 +1,8 @@
-# S3
+# Hosting a static web site at AWS using S3
 
 This example shows how to host a simple static web site at AWS using 
-[Amazon S3](https://aws.amazon.com/s3/), their Simple Storage Service.
+[Amazon S3](https://aws.amazon.com/s3/), their Simple Storage Service,
+and [Boto3](https://aws.amazon.com/sdk-for-python/), their SDK for Python.
 
 What does it do?
 
@@ -19,6 +20,6 @@ to use S3 with Python.
 
 Assumptions:
 
-* You have [boto3](https://boto3.readthedocs.io/en/latest/guide/quickstart.html#installation) installed, the Python SDK for AWS.
-* You have API access to your AWS account, and you've configured your
-  account to use it.
+* You have [boto3](https://boto3.readthedocs.io/en/latest/guide/quickstart.html#installation) installed.
+* You have API access to your AWS account and you've configured your
+  local user account to use it.

@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y nginx-light
+    mv -fv /usr/share/nginx/html /usr/share/nginx/html.orig
+    ln -fsv /vagrant/public /usr/share/nginx/html
+    echo " "
+    echo "----"
+    echo " "
+    echo "Testing. You should see HTML below."
+    wget -qO- localhost
+    echo " "
+    echo "----"
+    echo " "
+   echo "You can also test at http://localhost:8080 from your host system."
+  SHELL
+end

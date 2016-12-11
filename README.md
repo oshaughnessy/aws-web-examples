@@ -10,10 +10,10 @@ account. Most are likely to require the
 
 ## Examples
 
-### [s3-static](./s3-static)
+### [s3-static](./01_s3-static)
 
 Shows simple steps in Python for hosting a static web site at S3.
 
-## [eb-dynamic](./eb-dynamic)
+## [eb-dynamic](./02_eb-dynamic)
 
 Shows steps for deploying a web site to Elastic Beanstalk.

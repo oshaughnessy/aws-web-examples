@@ -12,7 +12,8 @@ What does it do?
   the Beanstalk app will load its site code and some config options.
 * It copies the files from the local "public" subdirectory to that bucket.
 * It creates a new Beanstalk application, using as many defaults as
-  possible, then deploys it.
+  possible, then deploys it. The application is deployed on a
+  [single t2.nano instance](./public/.ebextensions/launch.config).
 * It verifies that the site is functioning correctly, as reported by
   Elastic Beanstalk's own health check system.
 

@@ -5,16 +5,16 @@ in a virtual machine using [Vagrant](https://www.vagrantup.com).
 
 What does it do?
 
-* In runs an Ubuntu 14.04 virtual machine.
+* It runs an Ubuntu 14.04 virtual machine.
 * It installs Nginx.
-* In links the local "public" subdirectory to the Nginx document root
+* It links the local "public" subdirectory to the Nginx document root
   within the VM, so that the VM's web server is serving up those files.
 * It tries to query Nginx and show you the resulting HTML as a visual
   test that the site is working.
 
 Assumptions:
 
-* You have vagrant installed on your computer.
+* You have Vagrant installed on your computer.
 * Your have a compatible [virtualization provider](https://www.vagrantup.com/docs/getting-started/providers.html) installed, like VirtualBox or VMWare Fusion.
 
 To try it, run `vagrant up` from this directory.

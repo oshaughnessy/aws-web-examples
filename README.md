@@ -2,11 +2,14 @@
 
 Ways to host web sites at AWS
 
+
 ## Requirements
 
 The AWS examples here require an account with [Amazon Web Services](https://aws.amazon.com/).
 
 You'll also need [AWS API](https://aws.amazon.com/blogs/security/a-new-and-standardized-way-to-manage-credentials-in-the-aws-sdks/) credentials set up.
+
+Other requirements are noted below.
 
 
 ## Examples

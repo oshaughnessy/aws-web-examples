@@ -18,3 +18,5 @@ Assumptions:
 * Your have a compatible [virtualization provider](https://www.vagrantup.com/docs/getting-started/providers.html) installed, like VirtualBox or VMWare Fusion.
 
 To try it, run `vagrant up` from this directory.
+
+When you're done, run `vagrant destroy`.

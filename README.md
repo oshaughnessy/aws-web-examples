@@ -14,10 +14,10 @@ You'll also need [AWS API](https://aws.amazon.com/blogs/security/a-new-and-stand
 
 Shows simple steps in Python for hosting a static web site at S3.
 
-## [AWS Elastic Beanstalk](./aws-elastic-beanstalk)
+### [AWS Elastic Beanstalk](./aws-elastic-beanstalk)
 
 Shows steps for deploying a web site to Elastic Beanstalk.
 
-## [Vagrant](./vagrant)
+### [Vagrant](./vagrant)
 
 Shows steps for deploying a web site to a VM using Vagrant.

@@ -21,3 +21,7 @@ Shows steps for deploying a web site to Elastic Beanstalk.
 ### [Vagrant](./vagrant)
 
 Shows steps for deploying a web site to a VM using Vagrant.
+
+### [Vagrant w/Puppet](./vagrant-puppet)
+
+Shows steps for using Puppet to deploy a web site inside a VM using Vagrant.

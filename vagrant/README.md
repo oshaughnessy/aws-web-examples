@@ -17,4 +17,4 @@ Assumptions:
 * You have vagrant installed on your computer.
 * Your have a compatible [virtualization provider](https://www.vagrantup.com/docs/getting-started/providers.html) installed, like VirtualBox or VMWare Fusion.
 
-To test, run `vagrant up` from this directory.
+To try it, run `vagrant up` from this directory.

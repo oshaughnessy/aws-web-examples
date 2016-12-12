@@ -23,3 +23,5 @@ Assumptions:
 * You have [boto3](https://boto3.readthedocs.io/en/latest/guide/quickstart.html#installation) installed.
 * You have API access to your AWS account and you've configured your
   local user account to use it.
+
+To try it, run `./static-s3.py` from this directory.

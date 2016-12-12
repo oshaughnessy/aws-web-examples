@@ -26,3 +26,5 @@ Assumptions:
   [Homebrew](http://brew.sh).
 * You have API access to your AWS account, and you've configured the
   AWS CLI tools to use it.
+
+To try it, run `./eb-deploy` from this directory.
